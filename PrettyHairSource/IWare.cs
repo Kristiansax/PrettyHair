@@ -8,6 +8,8 @@ namespace CheckStock
 {
     public interface IWare
     {
-        int GetID();
+        double Price { get; set; }
+        int Amount { get; set; }
+        string Designation { get; set; }
     }
 }

@@ -50,11 +50,18 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="IWare.cs" />
-    <Compile Include="Ware.cs" />
-    <Compile Include="WareRepository.cs" />
-    <Compile Include="UnitTest1.cs" />
+    <Compile Include="PrettyHairTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\PrettyHairSource\PrettyHairSource.csproj">
+      <Project>{550d6e0e-2fe4-4826-99d2-b8b1d524b004}</Project>
+      <Name>PrettyHairSource</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\PrettyHairUI\PrettyHairUI.csproj">
+      <Project>{2036f713-650c-4ae2-9ef8-a81970e06ec1}</Project>
+      <Name>PrettyHairUI</Name>
+    </ProjectReference>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
