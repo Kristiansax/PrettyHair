@@ -4,12 +4,14 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 namespace CheckStock
 {
     [TestClass]
-    public class PrettyHairTest
+    public class PrettyHairUnitTests
     {
         WareRepository repository = new WareRepository();
         Ware Table = new Ware(1500, 1, "This is a wooden table");
-        Ware Shoe = new Ware(200, 30, "This is a pair of shoes");
+        Ware Shoe  = new Ware(200, 30, "This is a pair of shoes");
+        Ware Brush = new Ware(150, 25, "This is a brush for brushing hair");
 
+        /* ----- Tests for Check Stock and Receive Products Use cases ----- */
         [TestMethod]
         public void WareExists()
         {
@@ -71,6 +73,41 @@ namespace CheckStock
             Assert.AreEqual(1, repository.GetWares().Count);
             repository.DeleteWareByID(1);
             Assert.AreEqual(0, repository.GetWares().Count);
+        }
+        /* ----- Tests for Receive Order use case ----- */
+
+        /* ----- Tests for Process Order use case ----- */
+
+        /* ----- Tests for Plan Purchases use case ----- */
+
+        /* ----- Tests for Monitoring Finances use case ----- */
+        [TestMethod]
+        public void CanGetTotalPriceOfInventory()
+        {
+            double getTotalPrice;
+            Assert.AreEqual(0, repository.GetWares().Count);
+            repository.addItem(Table);
+            repository.addItem(Shoe);
+            repository.addItem(Brush);
+            getTotalPrice = repository.GetTotalPrice(repository.WareList);
+            Assert.AreEqual(11250, getTotalPrice);
+        }
+        [TestMethod]
+        public void CanGetTotalPriceForEveryWare()
+        {
+            double getWareTotalPrice;
+            Assert.AreEqual(0, repository.GetWares().Count);
+            repository.addItem(Brush);
+            getWareTotalPrice = repository.GetWareTotalPrice(1, repository.WareList);
+            Assert.AreEqual(3750, getWareTotalPrice);
+
+            repository.addItem(Shoe);
+            getWareTotalPrice = repository.GetWareTotalPrice(2, repository.WareList);
+            Assert.AreEqual(6000, getWareTotalPrice);
+
+            repository.addItem(Table);
+            getWareTotalPrice = repository.GetWareTotalPrice(3, repository.WareList);
+            Assert.AreEqual(1500, getWareTotalPrice);
         }
     }
 }

@@ -48,5 +48,21 @@ namespace CheckStock
         {
             return null;
         }
+        public double GetWareTotalPrice(int Id, Dictionary<int, IWare> warelist)
+        {
+            return warelist[Id].Price * warelist[Id].Amount;
+        }
+        public double GetTotalPrice(Dictionary<int, IWare> warelist)
+        {
+            double totalPrice = 0;
+            double tempPrice;
+            for (int i = 1; i <= warelist.Count; i++)
+            {
+                tempPrice = warelist[i].Price * warelist[i].Amount;
+                totalPrice = totalPrice + tempPrice;
+            }
+
+            return totalPrice;
+        }
     }
 }
